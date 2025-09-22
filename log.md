@@ -8,7 +8,7 @@ Skriv dit starttidspunkt her og commit/push til GitHub: 12:20
 
 har mere fokus på matematik pga det er imorgen har pillet lidt
 
-Skriv dit sluttidspunkt her og commit/push til GitHub:
+Skriv dit sluttidspunkt her og commit/push til GitHub: 15:10
 
 ## Dag 2
 
