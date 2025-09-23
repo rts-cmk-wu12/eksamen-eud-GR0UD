@@ -1,0 +1,30 @@
+// Base Colors
+$color-white: #ffffff;
+$color-dark-gray: #2c2c2c;
+$color-light-gray: #e3e3e3;
+$color-medium-gray: #d9d9d9;
+$color-charcoal: #1e1e1e;
+$color-off-white: #f5f5f5;
+$color-light-gray-text: #d1d5db;
+
+// Background Colors
+$bg-primary: $color-white;
+$bg-brand: $color-dark-gray;
+$bg-button: $color-light-gray;
+$bg-hover: $color-off-white;
+
+// Text Colors
+$text-primary: $color-charcoal;
+$text-on-brand: $color-off-white;
+$text-light: $color-off-white;
+$text-secondary: $color-light-gray-text;
+$text-hover: #b3b3b3;
+
+// Border Colors
+$border-default: $color-medium-gray;
+
+$default-font-family: "Inter", sans-serif;
+
+$font-size-md: 1.6rem;
+$font-size-lg: 1.8rem;
+$font-size-xl: 2.6rem;

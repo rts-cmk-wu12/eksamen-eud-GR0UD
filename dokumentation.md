@@ -1,6 +1,5 @@
 # Opgavetitel
-Dit navn
 
-Hold nr.
+Marks Galkins - WU12
 
-Valgfri opgave:
+Valgfri opgave: SignUp

@@ -1,0 +1,111 @@
+@use "../core/variables" as *;
+
+.signup-form {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 9rem 0;
+
+  &__container {
+    background: $bg-primary;
+    padding: 2.4rem;
+    border-radius: 8px;
+    border: 1px solid $border-default;
+    width: 100%;
+    max-width: 450px;
+    display: flex;
+    flex-direction: column;
+    gap: 2.4rem;
+  }
+
+  &__name-row {
+    display: flex;
+    gap: 1.5rem;
+  }
+
+  &__field {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+
+    &--half {
+      flex: 1;
+    }
+  }
+
+  &__label {
+    width: 100%;
+    font-size: $font-size-md;
+    font-weight: 500;
+    color: $text-primary;
+    font-family: $default-font-family;
+  }
+
+  &__input {
+    width: 100%;
+    box-sizing: border-box;
+    padding: 1.2rem 1.6rem;
+    border: 1px solid $border-default;
+    border-radius: 6px;
+    font-size: $font-size-md;
+    transition: all 0.2s ease-in-out;
+    font-family: $default-font-family;
+    color: $text-primary;
+
+    &:focus {
+      outline: none;
+      border-color: $color-dark-gray;
+      background-color: $bg-primary;
+      box-shadow: 0 0 0 3px rgba(44, 44, 44, 0.1);
+    }
+
+    &::placeholder {
+      color: $text-secondary;
+    }
+  }
+
+  &__submit-btn {
+    width: 100%;
+    background-color: $bg-brand;
+    color: $text-on-brand;
+    border: none;
+    padding: 1.2rem 1rem;
+    border-radius: 1rem;
+    font-size: $font-size-md;
+    font-weight: 500;
+    cursor: pointer;
+    transition: background-color 0.2s ease-in-out;
+    font-family: $default-font-family;
+
+    &:hover {
+      background-color: $color-charcoal;
+    }
+
+    &:focus {
+      outline: none;
+      box-shadow: 0 0 0 3px rgba(44, 44, 44, 0.3);
+    }
+
+    &:active {
+      background-color: $color-charcoal;
+    }
+  }
+
+  &__signin-link {
+    color: $text-primary;
+    text-decoration: underline;
+    font-size: $font-size-md;
+    transition: color 0.2s ease-in-out;
+    font-family: $default-font-family;
+
+    &:hover {
+      color: $color-charcoal;
+      text-decoration: none;
+    }
+
+    &:focus {
+      outline: none;
+      color: $color-charcoal;
+    }
+  }
+}

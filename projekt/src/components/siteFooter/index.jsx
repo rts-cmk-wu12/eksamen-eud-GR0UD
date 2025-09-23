@@ -1,4 +1,5 @@
 import Link from "next/link";
+import Image from "next/image";
 import {
   FaXTwitter,
   FaInstagram,
@@ -7,93 +8,101 @@ import {
 } from "react-icons/fa6";
 
 export default function SiteFooter() {
+  // Array and objects
+  const navigationSections = [
+    {
+      title: "About SwapHub",
+      links: [
+        { href: "/how-it-works", text: "How it works" },
+        { href: "/community-guidelines", text: "Community guidelines" },
+        { href: "/our-mission", text: "Our mission" },
+        { href: "/contact", text: "Contact us" },
+      ],
+    },
+    {
+      title: "Discover",
+      links: [
+        { href: "/categories", text: "Browse categories" },
+        { href: "/popular-swaps", text: "Popular Swaps" },
+        { href: "/stories", text: "Successful stories" },
+        { href: "/events", text: "Upcoming events" },
+      ],
+    },
+    {
+      title: "Support",
+      links: [
+        { href: "/help-center", text: "Help Center" },
+        { href: "/faqs", text: "FAQs" },
+        { href: "/safety-tips", text: "Safety tips" },
+        { href: "/report-issue", text: "Report an issue" },
+      ],
+    },
+  ];
+
   return (
     <footer className='site-footer'>
-      <div>
-        <Link href='/'>
-          <Image src='/Images/Logo.svg' alt='Logo' width={150} height={50} />{" "}
+      <div className='site-footer__brand-section'>
+        <Link href='/' className='site-footer__logo-link'>
+          <Image
+            src='/Images/Logo.svg'
+            alt='Logo'
+            width={125}
+            height={40}
+            className='site-footer__logo'
+          />
         </Link>
 
-        <div className='footer-media-links'>
-          <Link href='https://x.com' target='_blank' rel='noopener noreferrer'>
-            <FaXTwitter size={30} />
+        <div className='site-footer__social-links'>
+          <Link
+            href='https://x.com'
+            target='_blank'
+            rel='noopener noreferrer'
+            className='site-footer__social-link'
+          >
+            <FaXTwitter size={30} className='site-footer__social-icon' />
           </Link>
           <Link
             href='https://instagram.com'
             target='_blank'
             rel='noopener noreferrer'
+            className='site-footer__social-link'
           >
-            <FaInstagram size={30} />
+            <FaInstagram size={30} className='site-footer__social-icon' />
           </Link>
           <Link
             href='https://youtube.com'
             target='_blank'
             rel='noopener noreferrer'
+            className='site-footer__social-link'
           >
-            <FaYoutube size={30} />
+            <FaYoutube size={30} className='site-footer__social-icon' />
           </Link>
           <Link
             href='https://linkedin.com'
             target='_blank'
             rel='noopener noreferrer'
+            className='site-footer__social-link'
           >
-            <FaLinkedin size={30} />
+            <FaLinkedin size={30} className='site-footer__social-icon' />
           </Link>
         </div>
       </div>
 
-      <div className='footer-nav'>
-        <div>
-          <h4>About SwapHub</h4>
-          <ul>
-            <li>
-              <Link href='/how-it-works'>How it works</Link>
-            </li>
-            <li>
-              <Link href='/community-guidelines'>Community guidelines</Link>
-            </li>
-            <li>
-              <Link href='/our-mission'>Our mission</Link>
-            </li>
-            <li>
-              <Link href='/contact'>Contact us</Link>
-            </li>
-          </ul>
-        </div>
-        <div>
-          <h4>Discover</h4>
-          <ul>
-            <li>
-              <Link href='/categories'>Browse categories</Link>
-            </li>
-            <li>
-              <Link href='/popular-swaps'>Popular Swaps</Link>
-            </li>
-            <li>
-              <Link href='/stories'>Successful stories</Link>
-            </li>
-            <li>
-              <Link href='/events'>Upcoming events</Link>
-            </li>
-          </ul>
-        </div>
-        <div>
-          <h4>Support</h4>
-          <ul>
-            <li>
-              <Link href='/help-center'>Help Center</Link>
-            </li>
-            <li>
-              <Link href='/faqs'>FAQs</Link>
-            </li>
-            <li>
-              <Link href='/safety-tips'>Safety tips</Link>
-            </li>
-            <li>
-              <Link href='/report-issue'>Report an issue</Link>
-            </li>
-          </ul>
-        </div>
+      <div className='site-footer__navigation'>
+        {navigationSections.map((section, index) => (
+          <div key={index} className='site-footer__nav-column'>
+            <h4 className='site-footer__nav-title'>{section.title}</h4>
+            <ul className='site-footer__nav-list'>
+              {section.links.map((link, linkIndex) => (
+                <li key={linkIndex} className='site-footer__nav-item'>
+                  <Link href={link.href} className='site-footer__nav-link'>
+                    {link.text}
+                  </Link>
+                </li>
+              ))}
+            </ul>
+          </div>
+        ))}
       </div>
     </footer>
   );

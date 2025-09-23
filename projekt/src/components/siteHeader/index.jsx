@@ -4,28 +4,52 @@ import Image from "next/image";
 export default function SiteHeader() {
   return (
     <header className='site-header'>
-      <Link href='/'>
-        <Image src='/Images/Logo.svg' alt='Logo' width={50} height={50} />
-      </Link>
-      <nav>
-        <ul>
-          <li>
-            <Link href='/'>Listings</Link>
-          </li>
-          <li>
-            <Link href='/community'>Community</Link>
-          </li>
-          <li>
-            <Link href='/contact'>Contact</Link>
-          </li>
-          <li>
-            <Link href='/sign-in'>Sign In</Link>
-          </li>
-          <li>
-            <Link href='/sign-up'>Sign Up</Link>
-          </li>
-        </ul>
-      </nav>
+      <div className='site-header__container'>
+        <Link href='/' className='site-header__logo'>
+          <Image
+            src='/Images/Logo.svg'
+            alt='SwapHub Logo'
+            width={125}
+            height={40}
+            className='site-header__logo-image'
+          />
+        </Link>
+        <nav className='site-header__nav'>
+          <ul className='site-header__nav-list'>
+            <li className='site-header__nav-item'>
+              <Link href='/' className='site-header__nav-link'>
+                Listings
+              </Link>
+            </li>
+            <li className='site-header__nav-item'>
+              <Link href='/community' className='site-header__nav-link'>
+                Community
+              </Link>
+            </li>
+            <li className='site-header__nav-item'>
+              <Link href='/contact' className='site-header__nav-link'>
+                Contact
+              </Link>
+            </li>
+            <li className='site-header__nav-item'>
+              <Link
+                href='/sign-in'
+                className='site-header__nav-link site-header__nav-link--signin'
+              >
+                Sign in
+              </Link>
+            </li>
+            <li className='site-header__nav-item'>
+              <Link
+                href='/sign-up'
+                className='site-header__nav-link site-header__nav-link--register'
+              >
+                Register
+              </Link>
+            </li>
+          </ul>
+        </nav>
+      </div>
     </header>
   );
 }

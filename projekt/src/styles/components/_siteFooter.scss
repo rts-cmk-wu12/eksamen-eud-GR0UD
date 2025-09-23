@@ -1,1 +1,99 @@
+@use "../core/variables" as *;
+@use "../core/mixins" as *;
 
+.site-footer {
+  border-top: 1px solid $border-default;
+  color: $text-primary;
+  padding: 3.2rem;
+  padding-bottom: 6rem;
+  display: flex;
+  gap: 3rem;
+  justify-content: space-between;
+  @include width-maxer;
+
+  @media screen and (max-width: 768px) {
+    flex-direction: column;
+    gap: 3rem;
+  }
+  &__brand-section {
+    display: flex;
+    flex-direction: column;
+    gap: 2.4rem;
+  }
+
+  &__logo-link {
+    display: inline-block;
+  }
+
+  &__social-links {
+    display: flex;
+    gap: 1.2rem;
+    align-items: center;
+
+    & img {
+      object-position: left;
+    }
+  }
+
+  &__social-link {
+    color: $text-primary;
+    padding: 0.5rem;
+    border-radius: 50%;
+    transition: all 0.2s ease;
+
+    &:hover {
+      transform: translateY(-2px);
+    }
+  }
+
+  &__social-icon {
+    display: block;
+  }
+
+  &__navigation {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 3rem;
+
+    @media (min-width: 768px) {
+      grid-template-columns: repeat(3, 1fr);
+      gap: 15rem;
+    }
+  }
+
+  &__nav-column {
+    display: flex;
+    flex-direction: column;
+    font-family: $default-font-family;
+  }
+
+  &__nav-title {
+    font-size: $font-size-md;
+    font-weight: 600;
+    margin-bottom: 1rem;
+    color: $text-primary;
+    padding-bottom: 0.5rem;
+    display: inline-block;
+    width: fit-content;
+  }
+
+  &__nav-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 1.2rem;
+  }
+
+  &__nav-link {
+    color: $text-primary;
+    text-decoration: none;
+    font-size: $font-size-md;
+    transition: color 0.1s ease;
+
+    &:hover {
+      text-decoration: underline;
+    }
+  }
+}
