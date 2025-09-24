@@ -1,5 +1,7 @@
-export const metadata = { title: "Forside" };
+import Listing from "@/components/listing";
+
+export const metadata = { title: "Home" };
 
 export default function Home() {
-  return <main></main>;
+  return <Listing />;
 }

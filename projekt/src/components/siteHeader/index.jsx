@@ -1,7 +1,29 @@
+"use client";
+
 import Link from "next/link";
 import Image from "next/image";
+import { usePathname } from "next/navigation";
+import { useState, useEffect } from "react";
+import { isUserLoggedIn, removeUserToken } from "@/utils/auth";
 
 export default function SiteHeader() {
+  const pathname = usePathname();
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
+
+  const isActive = (href) => {
+    if (href === "/") return pathname === "/";
+    return pathname.startsWith(href);
+  };
+
+  useEffect(() => {
+    setIsLoggedIn(isUserLoggedIn());
+  }, [pathname]);
+
+  const handleLogout = () => {
+    removeUserToken();
+    setIsLoggedIn(false);
+    window.location.href = "/";
+  };
   return (
     <header className='site-header'>
       <div className='site-header__container'>
@@ -17,36 +39,54 @@ export default function SiteHeader() {
         <nav className='site-header__nav'>
           <ul className='site-header__nav-list'>
             <li className='site-header__nav-item'>
-              <Link href='/' className='site-header__nav-link'>
+              <Link
+                href='/'
+                className={`site-header__nav-link${
+                  isActive("/") ? " active" : ""
+                }`}
+              >
                 Listings
               </Link>
             </li>
             <li className='site-header__nav-item'>
-              <Link href='/community' className='site-header__nav-link'>
+              <Link
+                href='/community'
+                className={`site-header__nav-link${
+                  isActive("/community") ? " active" : ""
+                }`}
+              >
                 Community
               </Link>
             </li>
             <li className='site-header__nav-item'>
-              <Link href='/contact' className='site-header__nav-link'>
+              <Link
+                href='/contact'
+                className={`site-header__nav-link${
+                  isActive("/contact") ? " active" : ""
+                }`}
+              >
                 Contact
               </Link>
             </li>
-            <li className='site-header__nav-item'>
-              <Link
-                href='/sign-in'
-                className='site-header__nav-link site-header__nav-link--signin'
-              >
-                Sign in
-              </Link>
-            </li>
-            <li className='site-header__nav-item'>
-              <Link
-                href='/sign-up'
-                className='site-header__nav-link site-header__nav-link--register'
-              >
-                Register
-              </Link>
-            </li>
+            <>
+              <li className='site-header__nav-item'>
+                <Link
+                  href='/sign-in'
+                  className='site-header__nav-link site-header__nav-link--signin'
+                  onClick={isLoggedIn ? handleLogout : undefined}
+                >
+                  {isLoggedIn ? "Sign out" : "Sign in"}
+                </Link>
+              </li>
+              <li className='site-header__nav-item'>
+                <Link
+                  href={isLoggedIn ? "/profile" : "/sign-up"}
+                  className='site-header__nav-link site-header__nav-link--register'
+                >
+                  {isLoggedIn ? "Profile" : "Register"}
+                </Link>
+              </li>
+            </>
           </ul>
         </nav>
       </div>

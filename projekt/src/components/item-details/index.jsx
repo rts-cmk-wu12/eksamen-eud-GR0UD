@@ -1,0 +1,83 @@
+"use client";
+
+import React from "react";
+import useFetch from "@/hooks/useFetch";
+import { isUserLoggedIn } from "@/utils/auth";
+import Link from "next/link";
+import UserOtherItems from "../user-other-items";
+
+export default function ItemDetails({ listingId }) {
+  const { data: listing, error, loading } = useFetch(`/listings/${listingId}`);
+  const isLoggedIn = isUserLoggedIn();
+
+  if (loading) {
+    return <div className='loading'>Loading...</div>;
+  }
+
+  if (error || !listing) {
+    return <div className='error'>Failed to load listing details</div>;
+  }
+
+  const formatDate = (dateString) => {
+    const date = new Date(dateString);
+    return date.toLocaleDateString("en-US", {
+      year: "numeric",
+      month: "long",
+      day: "numeric",
+    });
+  };
+
+  const handleProposeSwap = () => {
+    console.log("Proposing swap for listing:", listingId);
+  };
+
+  return (
+    <div className='item-details'>
+      <div className='item-details__container'>
+        <div className='item-details__image-container'>
+          {listing.Asset?.url ? (
+            <img
+              src={listing.asset.url}
+              alt={listing.title}
+              className='item-details__image'
+            />
+          ) : (
+            <div className='item-details__placeholder'>
+              <span>No image available</span>
+            </div>
+          )}
+        </div>
+
+        <div className='item-details__content'>
+          <div className='item-details__header'>
+            <h1 className='item-details__title'>{listing.title}</h1>
+            <p className='item-details__date'>
+              On SwapHub since: {formatDate(listing.createdAt)}
+            </p>
+          </div>
+
+          <div className='item-details__description'>
+            <p>{listing.description}</p>
+          </div>
+
+          <div className='item-details__actions'>
+            {isLoggedIn ? (
+              <button
+                onClick={handleProposeSwap}
+                className='item-details__swap-button'
+              >
+                Propose a swap
+              </button>
+            ) : (
+              <Link href='/sign-in' className='item-details__login-link'>
+                Login to propose?
+              </Link>
+            )}
+          </div>
+        </div>
+      </div>
+
+      <UserOtherItems userId={listing.userId} currentListingId={listing.id} />
+    </div>
+  );
+}

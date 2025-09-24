@@ -1,5 +1,13 @@
-export const metadata = { title: "Details" }; // add product name??
+import ItemDetails from "@/components/item-details";
 
-export default function Details() {
-  return <main></main>;
+export const metadata = { title: "Details" };
+
+export default function Details({ params }) {
+  const listingId = params.id;
+
+  return (
+    <>
+      <ItemDetails listingId={listingId} />
+    </>
+  );
 }

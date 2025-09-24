@@ -1,75 +1,94 @@
 "use server";
 
 import { cookies } from "next/headers";
-import { redirect } from "next/navigation";
 import z from "zod";
 
-export default async function doTheLoginThing(prevState, formData) {
-  const email = formData.get("email");
-  const password = formData.get("password");
+export default async function signInAction(prevState, formData) {
+  const { email, password } = Object.fromEntries(formData);
 
   const schema = z.object({
-    email: z
-      .string()
-      .email({ message: "Please enter a valid email address" })
-      .min(1, { message: "Email is required" }),
-    password: z.string().min(1, { message: "Password is required" }),
+    email: z.string().email({ message: "You must enter a valid email" }),
+    password: z.string().min(1, { message: "You must enter a valid password" }),
   });
 
-  const validated = schema.safeParse({
-    email,
-    password,
-  });
+  const validated = schema.safeParse({ email, password });
 
-  if (!validated.success)
-    return {
-      success: false,
-      ...z.treeifyError(validated.error),
-    };
+  if (!validated.success) {
+    const flattened = z.flattenError(validated.error);
 
-  try {
-    const formData = new FormData();
-    formData.append("email", validated.data.email);
-    formData.append("password", validated.data.password);
+    const errorStructure = {};
 
-    const response = await fetch("http://localhost:4000/auth/token", {
-      method: "POST",
-      body: formData,
-    });
-
-    if (!response.ok) {
-      if (response.status === 401) {
-        return {
-          success: false,
-          errors: ["Email or password is incorrect"],
-        };
-      }
-      throw new Error("Authentication failed");
+    if (flattened.fieldErrors.email) {
+      errorStructure.email = { errors: flattened.fieldErrors.email };
     }
 
-    const authData = await response.json();
+    if (flattened.fieldErrors.password) {
+      errorStructure.password = { errors: flattened.fieldErrors.password };
+    }
 
-    const cookieStore = await cookies();
-    cookieStore.set("token", authData.token, {
-      maxAge: 60 * 60,
-      httpOnly: true,
-      secure: process.env.NODE_ENV === "production",
-      sameSite: "lax",
-    });
-
-    cookieStore.set("userId", authData.userId.toString(), {
-      maxAge: 60 * 60,
-      httpOnly: true,
-      secure: process.env.NODE_ENV === "production",
-      sameSite: "lax",
-    });
-
-    redirect("/");
-  } catch (error) {
-    console.error("Login error:", error);
     return {
       success: false,
-      errors: ["An error occurred. Please try again."],
+      error: errorStructure,
+      data: { email }, // husk til form prefill ;)
+      errors: flattened.formErrors || [],
     };
   }
+
+  const response = await fetch("http://localhost:4000/auth/token", {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify({
+      email: validated.data.email,
+      password: validated.data.password,
+    }),
+  });
+
+  if (!response.ok) {
+    return {
+      success: false,
+      error: {},
+      data: { email },
+      errors: ["Forkert email eller adgangskode"],
+    };
+  }
+
+  const json = await response.json();
+
+  if (!json.token || !json.userId) {
+    return {
+      success: false,
+      error: {},
+      data: { email },
+      errors: ["Login failed, please try again"],
+    };
+  }
+
+  const cookieStore = cookies();
+
+  cookieStore.set({
+    name: "user_token",
+    value: json.token,
+    path: "/",
+    secure: true,
+  });
+
+  cookieStore.set({
+    name: "user_id",
+    value: json.userId,
+    path: "/",
+    secure: true,
+  });
+
+  return {
+    success: true,
+    data: {
+      email,
+      userId: json.userId,
+    },
+    error: {},
+    errors: [],
+    message: "Login successful!",
+  };
 }

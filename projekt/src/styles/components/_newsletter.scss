@@ -1,4 +1,4 @@
-@import "../core/variables";
+@use "../core/variables" as *;
 
 .newsletter {
   display: flex;
@@ -80,14 +80,10 @@
     padding: 1.2rem 1.6rem;
     border: none;
     border-radius: 1rem;
-    background: $text-primary;
+    background: $bg-brand;
     color: $color-white;
     cursor: pointer;
     transition: background-color 0.2s ease;
-
-    &:hover {
-      background: lighten($text-primary, 10%);
-    }
 
     &:active {
       transform: translateY(1px);

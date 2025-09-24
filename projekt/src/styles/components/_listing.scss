@@ -1,0 +1,152 @@
+@use "../core/variables" as *;
+@use "../core/mixins" as *;
+
+.listing {
+  margin-top: 3.4rem;
+  font-family: $default-font-family;
+
+  &__controls {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+    margin-bottom: 2rem;
+  }
+
+  &__search-wrapper {
+    position: relative;
+    display: flex;
+    align-items: center;
+    padding: 1.2rem 1.6rem;
+    border-radius: 2rem;
+    border: 1px solid $border-default;
+  }
+  &__search-icon {
+    font-size: $font-size-lg;
+  }
+
+  &__search {
+    width: 220px;
+    background: $bg-primary;
+    color: $text-primary;
+    font-size: $font-size-md;
+
+    border: none;
+    outline: none;
+    &[type="search"]::-webkit-search-cancel-button,
+    &[type="search"]::-moz-search-clear-button,
+    &[type="search"]::-o-clear,
+    &[type="search"]::-ms-clear {
+      display: none;
+    }
+  }
+
+  &__filters {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+  }
+
+  &__filter {
+    background: $bg-button;
+    color: $text-primary;
+    display: flex;
+    align-items: center;
+    border: none;
+    border-radius: 1rem;
+    padding: 1rem;
+    margin-right: 0.5rem;
+    transition: all 0.1s;
+    cursor: pointer;
+    font-size: $font-size-md;
+    &--active {
+      background: $bg-brand;
+      color: $text-on-brand;
+    }
+  }
+
+  &__filter-check {
+    margin-right: 1rem;
+    font-size: $font-size-md;
+  }
+
+  &__loading {
+    color: $text-secondary;
+    margin-bottom: 1rem;
+  }
+  &__error {
+    color: red;
+    margin-bottom: 1rem;
+  }
+  &__grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 2rem;
+    justify-content: center;
+  }
+  &__card {
+    border: 1px solid $border-default;
+    border-radius: 1rem;
+    padding: 1rem;
+    background: $bg-primary;
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    max-width: 260px;
+    transition: box-shadow 0.2s;
+
+    &:hover .listing__title {
+      overflow: visible;
+      animation: marquee 8s linear infinite;
+    }
+  }
+  &__image {
+    height: 180px;
+    background: $bg-hover;
+    border-radius: 0.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 1rem;
+    overflow: hidden;
+  }
+  &__img {
+    max-width: 100%;
+    max-height: 100%;
+    border-radius: 0.5rem;
+  }
+  &__img-placeholder {
+    display: block;
+  }
+
+  &__title-wrapper {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    overflow: hidden;
+  }
+
+  &__title {
+    color: $text-primary;
+    font-size: $font-size-md;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    text-align: left;
+    width: 100%;
+  }
+  &__price {
+    color: $text-secondary;
+    font-size: $font-size-md;
+  }
+}
+
+@keyframes marquee {
+  0% {
+    transform: translateX(0%);
+  }
+  100% {
+    transform: translateX(-100%);
+  }
+}

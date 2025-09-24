@@ -1,0 +1,63 @@
+@use "../core/variables.scss" as *;
+
+.pagination {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  background: $bg-primary;
+  padding: 1rem 0;
+  font-size: $font-size-md;
+  user-select: none;
+  margin-top: 8rem;
+
+  .pagination-arrow {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: $color-gray-700;
+    background: transparent;
+    border: none;
+    font-size: 1.8rem;
+    padding: 0.5rem 1rem;
+    border-radius: 8px;
+    gap: 1rem;
+    cursor: pointer;
+    transition: background 0.2s, color 0.2s;
+
+    &:hover:not(.disabled) {
+      background: $bg-hover;
+      color: $text-primary;
+    }
+    &.disabled {
+      color: $border-default;
+      cursor: not-allowed;
+      opacity: 0.6;
+    }
+  }
+
+  .pagination-page {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 1rem;
+    background: transparent;
+    color: $text-primary;
+    font-weight: 500;
+    cursor: pointer;
+    border: 1px solid $border-default;
+    transition: background 0.2s, color 0.2s, border 0.2s;
+    margin: 0 2px;
+    padding: 0.8rem 1.2rem;
+    &:hover {
+      background: $bg-hover;
+    }
+    &.active {
+      background: $bg-brand;
+      color: $text-on-brand;
+      border-color: $bg-brand;
+      cursor: default;
+      box-shadow: 0 2px 8px rgba(34, 34, 34, 0.08);
+    }
+  }
+}
