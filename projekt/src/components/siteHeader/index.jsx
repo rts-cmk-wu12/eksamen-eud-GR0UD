@@ -25,22 +25,22 @@ export default function SiteHeader() {
     window.location.href = "/";
   };
   return (
-    <header className='site-header'>
-      <div className='site-header__container'>
-        <Link href='/' className='site-header__logo'>
+    <header className="site-header">
+      <div className="site-header__container">
+        <Link href="/" className="site-header__logo">
           <Image
-            src='/Images/Logo.svg'
-            alt='SwapHub Logo'
+            src="/Images/Logo.svg"
+            alt="SwapHub Logo"
             width={125}
             height={40}
-            className='site-header__logo-image'
+            className="site-header__logo-image"
           />
         </Link>
-        <nav className='site-header__nav'>
-          <ul className='site-header__nav-list'>
-            <li className='site-header__nav-item'>
+        <nav className="site-header__nav">
+          <ul className="site-header__nav-list">
+            <li className="site-header__nav-item">
               <Link
-                href='/'
+                href="/"
                 className={`site-header__nav-link${
                   isActive("/") ? " active" : ""
                 }`}
@@ -48,9 +48,9 @@ export default function SiteHeader() {
                 Listings
               </Link>
             </li>
-            <li className='site-header__nav-item'>
+            <li className="site-header__nav-item">
               <Link
-                href='/community'
+                href="/community"
                 className={`site-header__nav-link${
                   isActive("/community") ? " active" : ""
                 }`}
@@ -58,9 +58,9 @@ export default function SiteHeader() {
                 Community
               </Link>
             </li>
-            <li className='site-header__nav-item'>
+            <li className="site-header__nav-item">
               <Link
-                href='/contact'
+                href="/contact"
                 className={`site-header__nav-link${
                   isActive("/contact") ? " active" : ""
                 }`}
@@ -69,19 +69,19 @@ export default function SiteHeader() {
               </Link>
             </li>
             <>
-              <li className='site-header__nav-item'>
+              <li className="site-header__nav-item">
                 <Link
-                  href='/sign-in'
-                  className='site-header__nav-link site-header__nav-link--signin'
+                  href="/sign-in"
+                  className="site-header__nav-link site-header__nav-link--signin"
                   onClick={isLoggedIn ? handleLogout : undefined}
                 >
                   {isLoggedIn ? "Sign out" : "Sign in"}
                 </Link>
               </li>
-              <li className='site-header__nav-item'>
+              <li className="site-header__nav-item">
                 <Link
                   href={isLoggedIn ? "/profile" : "/sign-up"}
-                  className='site-header__nav-link site-header__nav-link--register'
+                  className="site-header__nav-link site-header__nav-link--register"
                 >
                   {isLoggedIn ? "Profile" : "Register"}
                 </Link>

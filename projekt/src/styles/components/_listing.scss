@@ -10,7 +10,7 @@
     align-items: center;
     justify-content: space-between;
     gap: 1rem;
-    margin-bottom: 2rem;
+    margin-bottom: 5rem;
   }
 
   &__search-wrapper {
@@ -68,7 +68,7 @@
 
   &__filter-check {
     margin-right: 1rem;
-    font-size: $font-size-md;
+    font-size: $font-size-lg;
   }
 
   &__loading {

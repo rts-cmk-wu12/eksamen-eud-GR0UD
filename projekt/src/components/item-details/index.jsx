@@ -1,6 +1,7 @@
 "use client";
 
 import React from "react";
+import Image from "next/image";
 import useFetch from "@/hooks/useFetch";
 import { isUserLoggedIn } from "@/utils/auth";
 import Link from "next/link";
@@ -11,11 +12,11 @@ export default function ItemDetails({ listingId }) {
   const isLoggedIn = isUserLoggedIn();
 
   if (loading) {
-    return <div className='loading'>Loading...</div>;
+    return <div className="loading">Loading...</div>;
   }
 
   if (error || !listing) {
-    return <div className='error'>Failed to load listing details</div>;
+    return <div className="error">Failed to load listing details</div>;
   }
 
   const formatDate = (dateString) => {
@@ -32,44 +33,47 @@ export default function ItemDetails({ listingId }) {
   };
 
   return (
-    <div className='item-details'>
-      <div className='item-details__container'>
-        <div className='item-details__image-container'>
-          {listing.Asset?.url ? (
-            <img
+    <div className="item-details">
+      <div className="item-details__container">
+        <div className="item-details__image-container">
+          {listing.asset?.url ? (
+            <Image
               src={listing.asset.url}
               alt={listing.title}
-              className='item-details__image'
+              className="item-details__image"
+              width={415}
+              height={415}
             />
           ) : (
-            <div className='item-details__placeholder'>
+            <div className="item-details__placeholder">
               <span>No image available</span>
             </div>
           )}
         </div>
 
-        <div className='item-details__content'>
-          <div className='item-details__header'>
-            <h1 className='item-details__title'>{listing.title}</h1>
-            <p className='item-details__date'>
-              On SwapHub since: {formatDate(listing.createdAt)}
-            </p>
+        <div className="item-details__content">
+          <div className="item-details__header">
+            <h1 className="item-details__title">{listing.title}</h1>
           </div>
 
-          <div className='item-details__description'>
+          <div className="item-details__description">
             <p>{listing.description}</p>
           </div>
 
-          <div className='item-details__actions'>
+          <p className="item-details__date">
+            On SwapHub since: {formatDate(listing.createdAt)}
+          </p>
+
+          <div className="item-details__actions">
             {isLoggedIn ? (
               <button
                 onClick={handleProposeSwap}
-                className='item-details__swap-button'
+                className="item-details__swap-button"
               >
                 Propose a swap
               </button>
             ) : (
-              <Link href='/sign-in' className='item-details__login-link'>
+              <Link href="/sign-in" className="item-details__login-link">
                 Login to propose?
               </Link>
             )}

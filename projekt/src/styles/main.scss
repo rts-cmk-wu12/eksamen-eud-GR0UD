@@ -11,3 +11,8 @@
 @use "components/newsletter";
 @use "components/listing";
 @use "components/pagination";
+@use "components/item-details";
+@use "components/userOtherItems.scss";
+@use "components/editProfileForm";
+
+@use "pages/not-found";

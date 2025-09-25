@@ -3,6 +3,7 @@
 import React, { useMemo } from "react";
 import useFetch from "@/hooks/useFetch";
 import Link from "next/link";
+import Image from "next/image";
 
 export default function UserOtherItems({ userId, currentListingId }) {
   const { data: allListings, error, loading } = useFetch("/listings");
@@ -17,23 +18,23 @@ export default function UserOtherItems({ userId, currentListingId }) {
 
   if (loading) {
     return (
-      <div className='user-other-items__loading'>Loading other items...</div>
+      <div className="user-other-items__loading">Loading other items...</div>
     );
   }
 
   if (error) {
     return (
-      <div className='user-other-items__error'>Failed to load other items</div>
+      <div className="user-other-items__error">Failed to load other items</div>
     );
   }
 
   if (userOtherItems.length === 0) {
     return (
-      <div className='user-other-items'>
-        <h2 className='user-other-items__title'>
+      <div className="user-other-items">
+        <h2 className="user-other-items__title">
           Other items from this Swapper
         </h2>
-        <p className='user-other-items__empty'>
+        <p className="user-other-items__empty">
           No other items available from this user.
         </p>
       </div>
@@ -41,41 +42,36 @@ export default function UserOtherItems({ userId, currentListingId }) {
   }
 
   return (
-    <div className='user-other-items'>
-      <h2 className='user-other-items__title'>Other items from this Swapper</h2>
+    <div className="user-other-items">
+      <h2 className="user-other-items__heading">
+        Other items from this Swapper
+      </h2>
 
-      <div className='user-other-items__grid'>
+      <div className="user-other-items__container">
         {userOtherItems.map((listing) => (
           <Link
             href={`/details/${listing.id}`}
             key={listing.id}
-            className='user-other-items__item'
+            className="user-other-items__card"
           >
-            <div className='user-other-items__item-container'>
-              {listing.Asset?.url ? (
-                <img
-                  src={listing.Asset.url}
+            <div className="user-other-items__image">
+              {listing.asset?.url ? (
+                <Image
+                  src={listing.asset.url}
                   alt={listing.title}
-                  className='user-other-items__image'
+                  width={415}
+                  height={415}
+                  className="user-other-items__img"
                 />
               ) : (
-                <div className='user-other-items__placeholder'>
-                  <span>No image</span>
-                </div>
+                <span className="user-other-items__img-placeholder">
+                  No image
+                </span>
               )}
+            </div>
 
-              <div className='user-other-items__content'>
-                <h3 className='user-other-items__item-title'>
-                  {listing.title}
-                </h3>
-                {listing.description && (
-                  <p className='user-other-items__description'>
-                    {listing.description.length > 100
-                      ? `${listing.description.substring(0, 100)}...`
-                      : listing.description}
-                  </p>
-                )}
-              </div>
+            <div className="user-other-items__title-wrapper">
+              <h3 className="user-other-items__title">{listing.title}</h3>
             </div>
           </Link>
         ))}

@@ -59,7 +59,6 @@
     transition: all 0.2s ease-in-out;
     font-family: $default-font-family;
     color: $text-primary;
-    margin-bottom: 1.5rem;
 
     &:focus {
       outline: none;
@@ -71,6 +70,16 @@
     &::placeholder {
       color: $text-secondary;
     }
+
+    &--error {
+      border-color: #dc3545;
+      background-color: #fff8f8;
+
+      &:focus {
+        border-color: #dc3545;
+        box-shadow: 0 0 0 3px rgba(220, 53, 69, 0.25);
+      }
+    }
   }
 
   &__button {
@@ -78,15 +87,28 @@
     font-size: $font-size-md;
     font-weight: 600;
     padding: 1.2rem 1.6rem;
-    border: none;
+    border: 1px solid $bg-brand;
     border-radius: 1rem;
     background: $bg-brand;
     color: $color-white;
+    margin-top: 1.5rem;
     cursor: pointer;
     transition: background-color 0.2s ease;
 
     &:active {
       transform: translateY(1px);
     }
+    &:hover {
+      background-color: $bg-button;
+      color: $text-primary;
+      border: 1px solid #767676;
+    }
+  }
+
+  &__error-text {
+    color: #dc3545;
+    font-size: $font-size-sm;
+    margin-top: 0.25rem;
+    font-family: $default-font-family;
   }
 }
