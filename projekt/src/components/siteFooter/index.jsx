@@ -40,62 +40,63 @@ export default function SiteFooter() {
   ];
 
   return (
-    <footer className='site-footer'>
-      <div className='site-footer__brand-section'>
-        <Link href='/' className='site-footer__logo-link'>
+    <footer className="site-footer">
+      <div className="site-footer__brand-section">
+        <Link href="/" className="site-footer__logo-link">
           <Image
-            src='/Images/Logo.svg'
-            alt='Logo'
+            src="/Images/Logo.svg"
+            alt="Logo"
             width={125}
             height={40}
-            className='site-footer__logo'
+            loading="lazy"
+            className="site-footer__logo"
           />
         </Link>
 
-        <div className='site-footer__social-links'>
+        <div className="site-footer__social-links">
           <Link
-            href='https://x.com'
-            target='_blank'
-            rel='noopener noreferrer'
-            className='site-footer__social-link'
+            href="https://x.com"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="site-footer__social-link"
           >
-            <FaXTwitter size={30} className='site-footer__social-icon' />
+            <FaXTwitter size={30} className="site-footer__social-icon" />
           </Link>
           <Link
-            href='https://instagram.com'
-            target='_blank'
-            rel='noopener noreferrer'
-            className='site-footer__social-link'
+            href="https://instagram.com"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="site-footer__social-link"
           >
-            <FaInstagram size={30} className='site-footer__social-icon' />
+            <FaInstagram size={30} className="site-footer__social-icon" />
           </Link>
           <Link
-            href='https://youtube.com'
-            target='_blank'
-            rel='noopener noreferrer'
-            className='site-footer__social-link'
+            href="https://youtube.com"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="site-footer__social-link"
           >
-            <FaYoutube size={30} className='site-footer__social-icon' />
+            <FaYoutube size={30} className="site-footer__social-icon" />
           </Link>
           <Link
-            href='https://linkedin.com'
-            target='_blank'
-            rel='noopener noreferrer'
-            className='site-footer__social-link'
+            href="https://linkedin.com"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="site-footer__social-link"
           >
-            <FaLinkedin size={30} className='site-footer__social-icon' />
+            <FaLinkedin size={30} className="site-footer__social-icon" />
           </Link>
         </div>
       </div>
 
-      <div className='site-footer__navigation'>
+      <div className="site-footer__navigation">
         {navigationSections.map((section, index) => (
-          <div key={index} className='site-footer__nav-column'>
-            <h4 className='site-footer__nav-title'>{section.title}</h4>
-            <ul className='site-footer__nav-list'>
+          <div key={index} className="site-footer__nav-column">
+            <h4 className="site-footer__nav-title">{section.title}</h4>
+            <ul className="site-footer__nav-list">
               {section.links.map((link, linkIndex) => (
-                <li key={linkIndex} className='site-footer__nav-item'>
-                  <Link href={link.href} className='site-footer__nav-link'>
+                <li key={linkIndex} className="site-footer__nav-item">
+                  <Link href={link.href} className="site-footer__nav-link">
                     {link.text}
                   </Link>
                 </li>

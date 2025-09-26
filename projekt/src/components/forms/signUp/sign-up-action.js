@@ -30,6 +30,7 @@ export async function signUpUser(prevState, formData) {
   });
 
   if (!result.success) {
+    // Omstrukturer fejl til det format komponenten bruger
     const flattened = z.flattenError(result.error);
 
     const errorStructure = {};
@@ -75,6 +76,7 @@ export async function signUpUser(prevState, formData) {
     if (!res.ok) {
       const errorData = await res.json().catch(() => ({}));
 
+      // Håndter specifik email fejl
       if (res.status === 400 && errorData.message?.includes("email")) {
         return {
           error: { email: { errors: ["Email already exists"] } },

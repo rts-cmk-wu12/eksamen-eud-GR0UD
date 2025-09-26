@@ -28,9 +28,8 @@ export default function SignInForm() {
       });
       setTimeout(() => {
         redirect("/");
-      }, 1000);
+      }, 1000); // Kort delay før omdirigering
     }
-
     return () => toast.dismiss(id);
   }, [formState, isPending]);
 

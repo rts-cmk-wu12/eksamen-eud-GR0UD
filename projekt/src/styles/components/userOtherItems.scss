@@ -35,9 +35,6 @@
     text-decoration: none;
 
     &:hover {
-      box-shadow: 0 2px 16px 0 rgba(0, 0, 0, 0.08);
-      border-color: $bg-brand;
-
       .user-other-items__title {
         overflow: visible;
         animation: marquee 8s linear infinite;
@@ -46,7 +43,7 @@
   }
 
   &__image {
-    height: 180px;
+    height: 300px;
     background: $bg-hover;
     border-radius: 0.5rem;
     display: flex;

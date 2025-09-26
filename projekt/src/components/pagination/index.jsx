@@ -4,16 +4,17 @@ import { FaArrowLeft, FaArrowRight } from "react-icons/fa6";
 const Pagination = ({ currentPage, totalPages, onPageChange }) => {
   const pageNumbers = [];
   for (let i = 1; i <= totalPages; i++) {
+    // laver en array med alle sidetal fra 1 til totalPages, Her stopper den, når i bliver større end totalPages.
     pageNumbers.push(i);
   }
 
   return (
-    <nav className='pagination' aria-label='Pagination Navigation'>
+    <nav className="pagination" aria-label="Pagination Navigation">
       <button
         className={`pagination-arrow${currentPage === 1 ? " disabled" : ""}`}
         onClick={() => onPageChange(currentPage - 1)}
         disabled={currentPage === 1}
-        aria-label='Previous Page'
+        aria-label="Previous Page"
       >
         <FaArrowLeft />
         Previous
@@ -36,7 +37,7 @@ const Pagination = ({ currentPage, totalPages, onPageChange }) => {
         }`}
         onClick={() => onPageChange(currentPage + 1)}
         disabled={currentPage === totalPages}
-        aria-label='Next Page'
+        aria-label="Next Page"
       >
         Next
         <FaArrowRight />

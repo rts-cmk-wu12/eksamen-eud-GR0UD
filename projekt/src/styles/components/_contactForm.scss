@@ -63,6 +63,22 @@
     &::placeholder {
       color: $text-secondary;
     }
+
+    &--error {
+      border-color: #ef4444;
+      background-color: #fef2f2;
+
+      &:focus {
+        border-color: #ef4444;
+        box-shadow: 0 0 0 3px rgba(239, 68, 68, 0.1);
+      }
+    }
+
+    &:disabled {
+      background-color: $color-light-gray;
+      cursor: not-allowed;
+      opacity: 0.6;
+    }
   }
 
   &__textarea {
@@ -83,7 +99,7 @@
     transition: background-color 0.2s ease-in-out;
     font-family: $default-font-family;
 
-    &:hover {
+    &:hover:not(:disabled) {
       background-color: $color-charcoal;
     }
 
@@ -92,9 +108,22 @@
       box-shadow: 0 0 0 3px rgba(44, 44, 44, 0.3);
     }
 
-    &:active {
+    &:active:not(:disabled) {
       background-color: $color-charcoal;
     }
+
+    &:disabled {
+      background-color: $color-light-gray;
+      cursor: not-allowed;
+      opacity: 0.6;
+    }
+  }
+
+  &__error-text {
+    color: #dc3545;
+    font-size: $font-size-sm;
+    margin-top: 0.25rem;
+    font-family: $default-font-family;
   }
 }
 

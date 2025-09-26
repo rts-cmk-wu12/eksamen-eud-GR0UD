@@ -4,6 +4,7 @@ import React from "react";
 import Image from "next/image";
 import useFetch from "@/hooks/useFetch";
 import { isUserLoggedIn } from "@/utils/auth";
+import { formatDate } from "@/utils/dateFormat";
 import Link from "next/link";
 import UserOtherItems from "../user-other-items";
 
@@ -18,15 +19,6 @@ export default function ItemDetails({ listingId }) {
   if (error || !listing) {
     return <div className="error">Failed to load listing details</div>;
   }
-
-  const formatDate = (dateString) => {
-    const date = new Date(dateString);
-    return date.toLocaleDateString("en-US", {
-      year: "numeric",
-      month: "long",
-      day: "numeric",
-    });
-  };
 
   const handleProposeSwap = () => {
     console.log("Proposing swap for listing:", listingId);
@@ -43,6 +35,7 @@ export default function ItemDetails({ listingId }) {
               className="item-details__image"
               width={415}
               height={415}
+              loading="lazy"
             />
           ) : (
             <div className="item-details__placeholder">

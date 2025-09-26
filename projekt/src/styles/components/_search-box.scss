@@ -1,0 +1,31 @@
+@use "../../styles/core/variables" as *;
+@use "../../styles/core/mixins" as *;
+
+.search-box {
+  position: relative;
+  display: flex;
+  align-items: center;
+  padding: 1.2rem 1.6rem;
+  border-radius: 2rem;
+  border: 1px solid $border-default;
+
+  &__icon {
+    font-size: $font-size-lg;
+  }
+
+  &__input {
+    width: 220px;
+    background: $bg-primary;
+    color: $text-primary;
+    font-size: $font-size-md;
+    border: none;
+    outline: none;
+
+    &[type="search"]::-webkit-search-cancel-button,
+    &[type="search"]::-moz-search-clear-button,
+    &[type="search"]::-o-clear,
+    &[type="search"]::-ms-clear {
+      display: none;
+    }
+  }
+}

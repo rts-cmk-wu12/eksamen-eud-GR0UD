@@ -1,0 +1,33 @@
+@use "../../styles/core/variables" as *;
+@use "../../styles/core/mixins" as *;
+
+.filter-buttons {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+
+  &__button {
+    background: $bg-button;
+    color: $text-primary;
+    display: flex;
+    align-items: center;
+    border: none;
+    border-radius: 1rem;
+    padding: 1rem;
+    margin-right: 0.5rem;
+    transition: all 0.1s;
+    cursor: pointer;
+    font-size: $font-size-md;
+
+    &--active {
+      background: $bg-brand;
+      color: $text-on-brand;
+    }
+  }
+
+  &__check {
+    margin-right: 1rem;
+    font-size: $font-size-lg;
+  }
+}

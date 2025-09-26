@@ -33,6 +33,7 @@ export default function SiteHeader() {
             alt="SwapHub Logo"
             width={125}
             height={40}
+            priority={true}
             className="site-header__logo-image"
           />
         </Link>

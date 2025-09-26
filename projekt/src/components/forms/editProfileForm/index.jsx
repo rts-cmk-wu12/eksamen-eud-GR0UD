@@ -34,7 +34,9 @@ export default function ProfileForm() {
   if (userDataError) {
     return (
       <div className="profile-form">
-        <div className="profile-form__error">Failed to load user data</div>
+        <div className="profile-form__error">
+          Failed to load user data: {userDataError.message}
+        </div>
       </div>
     );
   }

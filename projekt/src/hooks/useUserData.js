@@ -14,6 +14,9 @@ export default function useUserData() {
         const userId = getUserId();
         const token = getUserToken();
 
+        console.log("useUserData - userId:", userId);
+        console.log("useUserData - token:", token ? "Present" : "Missing");
+
         if (!userId || !token) {
           setError(new Error("User not authenticated"));
           setLoading(false);
@@ -30,13 +33,19 @@ export default function useUserData() {
           }
         );
 
+        console.log("API Response status:", response.status);
+
         if (!response.ok) {
+          const errorText = await response.text();
+          console.log("API Error response:", errorText);
           throw new Error("Failed to fetch user data");
         }
 
         const data = await response.json();
+        console.log("User data fetched successfully:", data);
         setUserData(data);
       } catch (err) {
+        console.error("useUserData error:", err);
         setError(err);
       } finally {
         setLoading(false);

@@ -4,7 +4,7 @@ import { z } from "zod";
 import { cookies } from "next/headers";
 
 const userUpdateSchema = z.object({
-  email: z.string().min(1).email({ message: "You must enter a valid email" }),
+  email: z.string().email({ message: "You must enter a valid email" }),
   password: z
     .string()
     .min(6, { message: "Password must be at least 6 characters" }),
@@ -28,6 +28,7 @@ export async function updateUser(prevState, formData) {
   });
 
   if (!result.success) {
+    // Byg fejlstruktur til formatet komponenten forventer
     const error = {};
     for (const key in result.error.flatten().fieldErrors) {
       error[key] = { errors: result.error.flatten().fieldErrors[key] };
@@ -42,6 +43,7 @@ export async function updateUser(prevState, formData) {
   const id = cookieStore.get("user_id")?.value;
   const token = cookieStore.get("user_token")?.value;
 
+  // Tjek om bruger er autentificeret
   if (!id || !token) {
     return {
       error: { global: { errors: ["User not authenticated"] } },

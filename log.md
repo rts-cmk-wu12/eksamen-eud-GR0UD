@@ -32,4 +32,4 @@ Skriv dit sluttidspunkt her og commit/push til GitHub: 16:17 var ude har ikke r√
 
 Skriv dit starttidspunkt her og commit/push til GitHub: 9:52
 
-Skriv dit sluttidspunkt her og commit/push til GitHub:
+Skriv dit sluttidspunkt her og commit/push til GitHub: 16:00

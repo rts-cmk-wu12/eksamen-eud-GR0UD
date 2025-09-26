@@ -29,7 +29,7 @@ export default async function signInAction(prevState, formData) {
     return {
       success: false,
       error: errorStructure,
-      data: { email }, // husk til form prefill ;)
+      data: { email }, // husk til form prefill
       errors: flattened.formErrors || [],
     };
   }
@@ -56,6 +56,7 @@ export default async function signInAction(prevState, formData) {
 
   const json = await response.json();
 
+  // Tjek om token og userId findes i responsen
   if (!json.token || !json.userId) {
     return {
       success: false,
@@ -67,6 +68,7 @@ export default async function signInAction(prevState, formData) {
 
   const cookieStore = cookies();
 
+  // Sæt sikre cookies for brugerens session
   cookieStore.set({
     name: "user_token",
     value: json.token,

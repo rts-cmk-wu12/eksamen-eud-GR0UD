@@ -13,6 +13,7 @@ export async function subscribeToNewsletter(prevState, formData) {
 
   const parseResult = emailSchema.safeParse({ email: email.trim() });
   if (!parseResult.success) {
+    // Tag første fejlmeddelelse fra validering
     const firstError = parseResult.error?.errors?.[0]?.message;
     return {
       success: false,
@@ -29,6 +30,7 @@ export async function subscribeToNewsletter(prevState, formData) {
       body: JSON.stringify({ email: email.trim() }),
     });
 
+    // API returnerer 204 ved succes
     if (response.status === 204) {
       return { success: true };
     } else {

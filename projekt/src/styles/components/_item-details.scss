@@ -87,12 +87,6 @@
       border-color: $bg-hover;
       color: $text-primary;
     }
-
-    &:active {
-      background-color: darken($bg-hover, 5%);
-      border-color: darken($bg-hover, 5%);
-      color: $text-primary;
-    }
   }
 
   &__login-link {

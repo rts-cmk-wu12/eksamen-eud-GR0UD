@@ -61,6 +61,7 @@ export default function UserOtherItems({ userId, currentListingId }) {
                   alt={listing.title}
                   width={415}
                   height={415}
+                  loading="lazy"
                   className="user-other-items__img"
                 />
               ) : (
